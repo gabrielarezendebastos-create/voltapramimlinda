@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ff5da2" />
+  <title>Gabriela e Nayana</title>
+  <style>
+    :root {
+      --bg1: #fff1f7;
+      --bg2: #ffe6f0;
+      --bg3: #fff7df;
+      --pink: #ff5da2;
+      --pink-strong: #e64488;
+      --purple: #6d3659;
+      --white: #ffffff;
+      --text: #472437;
+      --shadow: rgba(119, 53, 85, 0.22);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      height: 100%;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2) 45%, var(--bg3));
+      color: var(--text);
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .scene {
+      width: min(760px, 100%);
+      position: relative;
+    }
+
+    .card {
+      position: relative;
+      background: rgba(255,255,255,0.93);
+      border: 1px solid rgba(255,93,162,0.18);
+      border-radius: 32px;
+      box-shadow: 0 24px 80px var(--shadow);
+      padding: 42px 30px 34px;
+      text-align: center;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 123, 179, 0.08);
+      pointer-events: none;
+    }
+
+    .card::before {
+      width: 260px;
+      height: 260px;
+      left: -90px;
+      top: -110px;
+    }
+
+    .card::after {
+      width: 300px;
+      height: 300px;
+      right: -110px;
+      bottom: -130px;
+    }
+
+    .sparkle {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: float 3s ease-in-out infinite;
+      opacity: 0.9;
+    }
+
+    .sparkle.s1 { left: 8%; top: 12%; }
+    .sparkle.s2 { right: 11%; top: 16%; animation-delay: .5s; }
+    .sparkle.s3 { left: 16%; bottom: 10%; animation-delay: 1s; }
+    .sparkle.s4 { right: 15%; bottom: 13%; animation-delay: .8s; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), #ff97c2);
+      color: var(--white);
+      font-size: 2.3rem;
+      box-shadow: 0 18px 28px rgba(255, 93, 162, 0.24);
+      animation: pulse 1.8s ease-in-out infinite;
+      margin-bottom: 18px;
+    }
+
+    .foto-wrap {
+      width: min(440px, 82vw);
+      height: 440px;
+      margin: 12px auto 20px;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 4px solid #ffd5ea;
+      box-shadow: 0 18px 32px rgba(119, 53, 85, 0.18);
+      background: #f7dee9;
+    }
+
+    .foto-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--pink-strong);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 6vw, 4.4rem);
+      line-height: 1.05;
+      color: var(--pink-strong);
+      text-shadow: 0 2px 0 rgba(255,255,255,0.7);
+    }
+
+    .sub {
+      margin: 18px auto 22px;
+      max-width: 620px;
+      font-size: 1.04rem;
+      line-height: 1.8;
+      color: var(--purple);
+      font-weight: 600;
+    }
+
+    .cantada {
+      margin: 0 auto 28px;
+      max-width: 600px;
+      padding: 18px 20px;
+      background: linear-gradient(135deg, #fff5fa, #fffaf1);
+      border-left: 5px solid var(--pink);
+      border-radius: 18px;
+      color: var(--purple);
+      font-size: 1.08rem;
+      line-height: 1.8;
+      font-weight: 700;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .button-row {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      min-height: 110px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 16px 30px;
+      font-size: 1.12rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      user-select: none;
+    }
+
+    .btn:hover { transform: translateY(-2px) scale(1.02); }
+    .btn:active { transform: scale(0.98); }
+
+    .yes {
+      background: linear-gradient(135deg, var(--pink), #ff8cc0);
+      color: var(--white);
+      box-shadow: 0 18px 32px rgba(255, 93, 162, 0.25);
+    }
+
+    .no {
+      position: relative;
+      background: #fff;
+      color: var(--purple);
+      border: 1px solid rgba(255,93,162,0.32);
+      box-shadow: 0 12px 26px rgba(126, 69, 101, 0.12);
+      min-width: 130px;
+    }
+
+    .message {
+      min-height: 34px;
+      margin-top: 18px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--pink-strong);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.35s ease;
+    }
+
+    .message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-12px) scale(1.06); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+
+    @media (max-width: 560px) {
+      .card { padding: 32px 18px 26px; }
+      .button-row { flex-direction: column; gap: 12px; min-height: 140px; }
+      .btn { width: 100%; }
+      .no { min-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="card">
+      <div class="sparkle s1">✨</div>
+      <div class="sparkle s2">💖</div>
+      <div class="sparkle s3">🌷</div>
+      <div class="sparkle s4">💫</div>
+
+      <div class="badge">❤</div>
+
+      <div class="foto-wrap">
+        <img src="foto-do-casal.jpg" alt="Gabriela e Nayana" />
+      </div>
+
+      <p class="eyebrow">Gabriela e Nayana</p>
+      <h1>VOLTE pra mim</h1>
+
+      <p class="sub">
+        Não foi o destino que nos trouxe perto; foi o coração. E hoje, eu quero te dizer que você é meu maior presente.
+      </p>
+
+      <p class="cantada">
+        “se o Luffy te conhecesse, ele desistiria do One Piece, pq tu já é um tesouro.”
+      </p>
+
+      <div class="button-row" id="buttonRow">
+        <button class="btn yes" id="yesBtn" type="button">Sim</button>
+        <button class="btn no" id="noBtn" type="button">Não</button>
+      </div>
+
+      <div class="message" id="message">❤ Gabriela e Nayana, juntos são a história mais bonita que eu quero viver.</div>
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const message = document.getElementById('message');
+    const buttonRow = document.getElementById('buttonRow');
+
+    function moveNoButton() {
+      const maxX = Math.max(buttonRow.clientWidth - noBtn.offsetWidth - 20, 10);
+      const maxY = Math.max(buttonRow.clientHeight - noBtn.offsetHeight - 20, 10);
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+      noBtn.style.transition = 'all 0.35s ease';
+    }
+
+    yesBtn.addEventListener('click', function () {
+      message.classList.add('show');
+      message.textContent = '❤ Gabriela e Nayana, juntos são a história mais bonita que eu quero viver.';
+      noBtn.style.opacity = '0.3';
+      noBtn.style.pointerEvents = 'none';
+    });
+
+    noBtn.addEventListener('mouseenter', moveNoButton);
+    noBtn.addEventListener('touchstart', moveNoButton, { passive: true });
+    noBtn.addEventListener('click', function (event) {
+      event.preventDefault();
+      moveNoButton();
+      moveNoButton();
+    });
+  </script>
+</body>
+</html>
